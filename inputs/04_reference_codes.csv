@@ -1,0 +1,23 @@
+code_set,source_value,source_meaning,target_value,meaning_status
+REF_CUSTOMER_TYPE,1,Individual,IND,Inferred (profile + report usage)
+REF_CUSTOMER_TYPE,2,Corporate,CRP,Inferred (profile + report usage)
+REF_CUSTOMER_TYPE,9,Unknown / not classified,UNK,Inferred - confirm with steward
+REF_KYC_STATUS,A,Approved / verified,VERIFIED,Inferred (profile + report usage)
+REF_KYC_STATUS,P,Pending,PENDING,Inferred (profile + report usage)
+REF_KYC_STATUS,R,Rejected,REJECTED,Inferred (profile + report usage)
+REF_ACCOUNT_TYPE,01,Savings,SAV,Documented
+REF_ACCOUNT_TYPE,02,Current,CUR,Documented
+REF_ACCOUNT_TYPE,03,Term deposit,TDP,Documented
+REF_ACCOUNT_TYPE,04,Loan,LON,Documented
+REF_ACCOUNT_TYPE,05,Credit card,CCD,Documented
+REF_ACCOUNT_TYPE,06,Other,OTH,Documented
+REF_ACCOUNT_STATUS,A,Active,ACTIVE,Documented
+REF_ACCOUNT_STATUS,C,Closed,CLOSED,Documented
+REF_ACCOUNT_STATUS,D,Dormant,DORMANT,Documented
+REF_ACCOUNT_STATUS,S,Suspended,SUSPENDED,Documented
+REF_PRODUCT_CATEGORY,SAV,Deposit,DEP,Target standard
+REF_PRODUCT_CATEGORY,CUR,Deposit,DEP,Target standard
+REF_PRODUCT_CATEGORY,TDP,Deposit,DEP,Target standard
+REF_PRODUCT_CATEGORY,LON,Lending,LND,Target standard
+REF_PRODUCT_CATEGORY,CCD,Cards,CRD,Target standard
+REF_PRODUCT_CATEGORY,OTH,Deposit,DEP,Assumption - confirm

@@ -52,7 +52,7 @@ CREATE TABLE DW.ETL_REJECT (
 ```
 `RAW_VALUE` for addresses, display names and subjects is PII: mask it or restrict access (Q-019).
 
-Codes: R01 mandatory null, R02 invalid/unmatched code or format, R03 invalid date, R04 overflow, R05 duplicate key, R06 referential failure, **R07 inconsistent values (new for MAIL02)**. `SEVERITY=FIELD` means the field was nulled/defaulted and the row loaded.
+Codes: R01 mandatory null, R02 invalid/unmatched code or format, R03 invalid date, R04 overflow, R05 duplicate key, R06 referential failure, R07 inconsistent values. `SEVERITY=FIELD` means the field was nulled/defaulted and the row loaded.
 
 Reference tables (version-controlled): `REF_DIRECTION`, `REF_PRIORITY`, `REF_RECIPIENT_TYPE`, `REF_DELIVERY_STATUS`, `REF_MAILBOX_TYPE` (from `04_reference_codes.csv`), plus `REF_INTERNAL_DOMAIN` (to be supplied, Q-001).
 

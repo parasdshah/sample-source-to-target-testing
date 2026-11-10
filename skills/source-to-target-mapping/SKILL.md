@@ -14,6 +14,25 @@ Detail files are in `references/` (paths relative to this file). Neighbouring ro
 - Work inside one project folder (`projects/<NAME>/inputs` -> `outputs`). Never read or write another project's folders.
 - Do not rely on any vendor-specific feature (subagents, slash commands, special tool names). To process several projects, run them one after another, or in parallel sessions if your tool supports it.
 
+## 0a. Reference index (read the ones you need, in this order)
+| When | Read |
+|---|---|
+| Before producing anything | `references/output-formats.md` (exact files, sheets, columns, allowed values) and `references/worked-example.md` (copy this style; full gold example in `projects/EMAIL_MAPPER/`) |
+| Decoding names | `references/naming-convention-decoder.md`, `references/abbreviation-dictionary.md` |
+| Inferring meaning, scoring, questions | `references/inference-and-confidence.md` |
+| Writing rules | `references/rule-language.md` (closed function list), `references/reject-and-default-policy.md` |
+| ETL notes | `references/etl-handoff-informatica-talend-hop.md` |
+| Verifying your work | `references/self-check.md`, `references/checklists.md`, `scripts/check_stm.py` |
+| User has a database but no field list | `references/generate-source-field-inventory.md`, `scripts/assemble_inventory.py` |
+
+## 0b. How to work if you are a smaller or older model
+1. Do one stage at a time and finish it before the next: decode, then infer and score, then map one target table at a time, then tests, then questions, then notes.
+2. Map one target table per step; after each table write its rows in the exact column order of sheet 1 before starting the next. Do not try to produce the whole workbook in one answer.
+3. Copy table and column names from the DDL and the inventory; never retype them from memory.
+4. Use only numbers present in the inputs. If a number is missing write `not supplied`.
+5. When unsure between two meanings, record both and add a question. Do not guess.
+6. Finish by running `scripts/check_stm.py` or the manual checks in `references/self-check.md`, fix every FAIL, and report the result.
+
 ## 1. Persona and Scope
 Senior data analyst / data modeler who owns the mapping specification between a source system and a target model, and hands it to ETL developers as a build-ready contract.
 - `[CORE]` Decode names, map fields, write transformation rules, flag gaps.
@@ -47,13 +66,13 @@ If an input is missing, state the assumption in the STM header and continue.
 ## 4. Process
 1. **Intake and normalise** the inputs. Standardise case, delimiters, encodings. Build a field inventory (ID per field: `SRC-<system>-<table>-<col>`).
 2. **Decode names** into English business names using the convention rules. See `references/naming-convention-decoder.md`. Output a glossary of tokens (abbreviation, expansion, source of rule, confidence).
-3. **Infer the undocumented fields.** Apply the evidence ladder and confidence scoring. See `references/inference-and-confidence.md`. Produce a steward question list for anything below the threshold.
+3. **Infer the undocumented fields.** Apply the evidence ladder and confidence scoring. See `references/inference-and-confidence.md`. Produce a steward question list (format in section 6 of that file) for every Medium field with a doubt and every Low field.
 4. **Match to target.** For each target attribute, find source candidates. Classify mapping type: direct, transform, derive, lookup/code translation, constant/default, system-generated (surrogate key, audit columns), aggregate, split, merge, not-mapped (with reason). Check datatype, length, precision, nullability, and key and grain compatibility.
-5. **Write rules** using the STM template in `references/stm-template.md`. Include join logic, filters, dedupe, survivorship if multiple sources, SCD handling, reject handling.
+5. **Write rules** using the formats in `references/output-formats.md` and only the functions in `references/rule-language.md`; null, default and reject behaviour follow `references/reject-and-default-policy.md`. Include join logic, filters, dedupe, survivorship if multiple sources, SCD handling, reject handling.
 6. **Gap and conflict report.** Unmapped mandatory targets, unmapped source fields (explicitly "intentionally out of scope" vs "unknown"), type or grain conflicts, and fields that suggest the target model is missing something. Send model issues to `data-modeler`.
 7. **Define validation:** row-count, sum/hash, null-rate and domain reconciliation per target table, plus field-level test cases. Hand DQ rules to `data-quality-engineer`.
 8. **Tool handoff:** produce the developer notes for Informatica, Talend and Apache Hop. See `references/etl-handoff-informatica-talend-hop.md`.
-9. **Review gates** per `references/checklists.md`: steward review for inferred meanings, architect review for grain and load pattern, ETL lead review for buildability.
+9. **Self-check, then review gates:** run `references/self-check.md`, then the gates in `references/checklists.md`: steward review for inferred meanings, architect review for grain and load pattern, ETL lead review for buildability.
 
 ## 5. Mapping Types and Rule Notation
 Use these labels in the `Mapping Type` column and keep the rule in neutral SQL-style expressions so any tool can implement it:
@@ -70,7 +89,7 @@ Use these labels in the `Mapping Type` column and keep the rule in neutral SQL-s
 
 ## 6. Decision Frameworks
 - **Direct vs derive:** if the source name matches but profile shows mixed semantics (e.g. one `STATUS` column with several code sets), derive and document, never map direct.
-- **Where to put logic:** simple type casts and trims in the ETL tool; set-based joins and aggregations pushed down to the database (Informatica pushdown, Talend ELT components, Hop SQL/DB steps) when volumes are large `[VERIFY per tool version]`.
+- **Where to put logic:** simple type casts and trims in the ETL tool; set-based joins and aggregations pushed down to the database (Informatica pushdown, Talend ELT components, Hop SQL/DB steps) when volumes are large.
 - **Low-confidence field:** stage it as-is in a landing/raw column (no business rule) rather than guess a target meaning; revisit after steward answers.
 - **Two sources for one target attribute:** define precedence and survivorship in the rule (hand to `mdm-lead` if it needs matching).
 - **Sensitive data:** flag PII/financial fields detected by name or profile, with masking or exclusion rules (`data-privacy-compliance-analyst`, `data-security-access-engineer`).
@@ -78,7 +97,7 @@ Use these labels in the `Mapping Type` column and keep the rule in neutral SQL-s
 ## 7. Governance Hooks
 - Every STM row has an owner, status (Draft / Inferred / Confirmed / Built / Tested) and evidence reference.
 - Confirmed meanings are pushed to the catalogue as business glossary terms and lineage (`data-catalog-metadata-manager`).
-- Keep the change log and approvals as audit evidence for regulatory lineage expectations (e.g. BCBS 239 `[VERIFY]`).
+- Keep the change log and approvals as audit evidence for regulatory lineage expectations (for example BCBS 239; confirm the applicable regulation with compliance).
 
 ## 8. Metrics
 - % source fields documented / inferred-high / inferred-low / unknown.

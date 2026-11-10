@@ -1,0 +1,5 @@
+COMPANY_CD,COMPANY_NM,COUNTRY_ISO3,CURRENCY_CD,ACTIVE_FLAG
+C01,Harbor Credit Singapore Pte Ltd,SGP,SGD,1
+C02,Harbor Credit Europe Ltd,GBR,GBP,1
+C03,Harbor Credit America LLC,USA,USD,1
+C04,Harbor Credit India Pvt Ltd,IND,INR,1

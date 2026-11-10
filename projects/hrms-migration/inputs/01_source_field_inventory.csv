@@ -1,0 +1,95 @@
+table,column,datatype,length,nullable,key,vendor_description,distinct_count,null_pct,min,max,top_values_or_pattern
+LEG_ENT,LEG_ENT_CD,CHAR,4,N,PK,Legal entity code,14,0,E100,E990,pattern A9{3}
+LEG_ENT,LEG_ENT_NM,VARCHAR,60,N,,Legal entity name,14,0,,,free text
+LEG_ENT,CTRY_CD,CHAR,2,N,,Country of registration (ISO 3166 alpha-2),9,0,,,IN (29%); GB (21%); US (21%); SG (14%); other (15%)
+LEG_ENT,CCY_CD,CHAR,3,N,,,8,0,,,INR (29%); GBP (21%); USD (21%); SGD (14%); other (15%)
+LEG_ENT,ACT_FLG,CHAR,1,N,,,2,0,N,Y,Y (93%); N (7%)
+ORG_UNIT,ORG_ID,CHAR,6,N,PK,Organisation unit identifier,1240,0,O10000,O99999,pattern O9{5}
+ORG_UNIT,PAR_ORG_ID,CHAR,6,Y,FK,,410,7.9,,,null at level 1 (7.9%); every non-null value exists in ORG_ID
+ORG_UNIT,ORG_LVL,NUMBER,1,N,,,4,0,1,4,1 (7.9%); 2 (24%); 3 (45%); 4 (23.1%)
+ORG_UNIT,ORG_NM,VARCHAR,80,N,,Organisation unit name,1198,0,,,free text
+ORG_UNIT,ORG_SHRT_CD,VARCHAR,10,N,,,1240,0,,,unique per unit; 4 upper-case letters in 91%
+ORG_UNIT,LEG_ENT_CD,CHAR,4,Y,FK,,14,3.2,,,14 distinct entities
+ORG_UNIT,ACT_FLG,CHAR,1,N,,,2,0,N,Y,Y (88%); N (12%)
+LOC_MST,LOC_ID,CHAR,5,N,PK,Location identifier,96,0,L0001,L0096,pattern L9{4}
+LOC_MST,LOC_NM,VARCHAR,60,N,,Location name,96,0,,,free text
+LOC_MST,CTRY_CD,CHAR,2,N,,Country (ISO 3166 alpha-2),9,0,,,IN (31%); GB (22%); US (21%); SG (14%); other (12%)
+LOC_MST,ST_NM,VARCHAR,40,Y,,,31,12.5,,,null for city states
+LOC_MST,CTY_NM,VARCHAR,50,N,,,64,0,,,free text; 3 cities appear under two spellings
+LOC_MST,ACT_FLG,CHAR,1,N,,,2,0,N,Y,Y (91%); N (9%)
+EMP_MST,EMP_ID,CHAR,8,N,PK,Employee identifier,41800,0,10000001,10051234,pattern 9{8}; unique across the database
+EMP_MST,LEG_ENT_CD,CHAR,4,N,FK,Legal entity that employs the person,14,0,,,14 distinct entities
+EMP_MST,FST_NM,VARCHAR,40,N,,First name,9120,0,,,free text; 2.1% contain an apostrophe or hyphen
+EMP_MST,LST_NM,VARCHAR,40,N,,Last name,14870,0,,,free text
+EMP_MST,DOB_DT,CHAR,8,Y,,,15210,0,00000000,20051231,00000000 (0.2%); otherwise YYYYMMDD
+EMP_MST,GNDR_CD,CHAR,1,Y,,,3,1.4,F,X,M (58%); F (40%); X (0.6%); null (1.4%)
+EMP_MST,NATL_ID_TYP,VARCHAR,3,Y,,,4,7.1,,,NIN (37%); PAN (27%); SSN (19%); PPT (9.9%); null (7.1%)
+EMP_MST,NATL_ID_NO,VARCHAR,20,Y,,National identifier number,38870,7.1,,,contains spaces or dashes in 6%; same value on 2 or more EMP_ID in 112 rows
+EMP_MST,HIRE_DT,DATE,,N,,Date of joining,6400,0,1994-02-01,2026-10-26,valid dates
+EMP_MST,TERM_DT,CHAR,8,N,,,4120,0,19990131,99991231,99991231 (74%)
+EMP_MST,TERM_RSN_CD,VARCHAR,4,Y,,,7,74.0,,,RES (14%); DTR (4.5%); RET (3.2%); EOC (2.1%); TRM (1.8%); DTH (0.2%); other (0.2%); null (74.0%)
+EMP_MST,EMP_STS_CD,CHAR,1,N,,,4,0,A,T,A (72.4%); T (26.0%); L (1.4%); S (0.2%)
+EMP_MST,EMAIL_ADR,VARCHAR,100,Y,,Work email address,40100,4.1,,,contains @ in 100%
+EMP_MST,PREV_EMP_ID,CHAR,8,Y,FK,,3350,91.9,,,populated 8.1%; every value exists in EMP_ID; the previous record has TERM_RSN_CD = DTR in 55% of links
+EMP_MST,REHIRE_FLG,CHAR,1,Y,,,2,0.3,N,Y,N (95.7%); Y (4.0%); null (0.3%)
+EMP_MST,UPD_TS,TIMESTAMP,,N,,,39900,0,2009-10-01 08:00:00,2026-10-30 22:14:03,valid timestamps
+EMP_JOB_HST,EMP_ID,CHAR,8,N,"PK, FK",Employee identifier,41760,0,10000001,10051234,every value exists in EMP_MST
+EMP_JOB_HST,EFF_DT,DATE,,N,PK,Effective start date,7100,0,1994-02-01,2026-10-26,valid dates
+EMP_JOB_HST,END_DT,DATE,,N,,,6900,0,1994-12-31,9999-12-31,9999-12-31 (24.7%)
+EMP_JOB_HST,ORG_ID,CHAR,6,N,FK,,1100,0,,,every value exists in ORG_UNIT
+EMP_JOB_HST,LOC_ID,CHAR,5,N,FK,,96,0,,,every value exists in LOC_MST
+EMP_JOB_HST,LEG_ENT_CD,CHAR,4,N,FK,,14,0,,,14 distinct entities
+EMP_JOB_HST,JOB_CD,VARCHAR,8,N,,,612,0,,,pattern AAA99
+EMP_JOB_HST,JOB_TTL,VARCHAR,80,Y,,Job title,2190,0.8,,,free text
+EMP_JOB_HST,GRD_CD,VARCHAR,4,Y,,,6,3.9,G1,G6,G1 (9%); G2 (24%); G3 (31%); G4 (20%); G5 (9%); G6 (3.1%); null (3.9%)
+EMP_JOB_HST,MGR_EMP_ID,CHAR,8,Y,FK,,5900,18.2,,,FK to EMP_MST.EMP_ID; 1.2% of values are not found in EMP_MST
+EMP_JOB_HST,FTE_PCT,NUMBER,"5,2",N,,,9,0,0,100,100.00 (91%); 80.00 (4%); 50.00 (3.5%); 0.00 (0.3%); other (1.2%)
+EMP_JOB_HST,ACT_RSN_CD,VARCHAR,4,Y,,,7,2.0,,,HIR (24%); PRM (18%); DPT (6.5%); XFR (22%); LOC (3.5%); TRM (23%); other (1%); null (2%)
+EMP_JOB_HST,BASE_SAL_AMT,DECIMAL,"15,2",Y,,,61200,6.0,,,numeric
+HR_COMPANY,COMPANY_CD,VARCHAR,6,N,PK,Company identifier,6,0,C01,C06,pattern A99
+HR_COMPANY,COMPANY_NM,VARCHAR,60,N,,Company name,6,0,,,free text
+HR_COMPANY,COUNTRY_ISO3,CHAR,3,N,,,5,0,,,SGP; GBR; USA; IND; DEU
+HR_COMPANY,CURRENCY_CD,CHAR,3,N,,,5,0,,,SGD; GBP; USD; INR; EUR
+HR_COMPANY,ACTIVE_FLAG,NUMBER,1,N,,,2,0,0,1,1 (83%); 0 (17%)
+HR_DEPT,REGION_CD,CHAR,4,N,PK,Management region owning the record,3,0,AMER,EMEA,APAC (38%); EMEA (35%); AMER (27%)
+HR_DEPT,DEPT_CD,VARCHAR,6,N,PK,Department code,71,0,D100,D990,22 codes are used in more than one region with different names
+HR_DEPT,DEPT_NM,VARCHAR,60,N,,Department name,160,0,,,free text
+HR_DEPT,DIV_CD,VARCHAR,4,N,,,9,0,,,9 divisions
+HR_DEPT,DIV_NM,VARCHAR,60,N,,,9,0,,,free text
+HR_DEPT,ACTIVE_FLAG,NUMBER,1,N,,,2,0,0,1,1 (86%); 0 (14%)
+HR_SITE,SITE_CD,VARCHAR,6,N,PK,Site code,54,0,S001,S054,pattern S9{3}
+HR_SITE,SITE_NM,VARCHAR,60,N,,Site name,54,0,,,free text
+HR_SITE,REGION_CD,CHAR,4,N,,Management region,3,0,AMER,EMEA,APAC (41%); EMEA (33%); AMER (26%)
+HR_SITE,COUNTRY_ISO3,CHAR,3,N,,,14,0,,,ISO alpha-3 codes
+HR_SITE,PROVINCE_NM,VARCHAR,40,Y,,,33,11.1,,,null for city states
+HR_SITE,DISTRICT_NM,VARCHAR,40,Y,,,40,5.6,,,free text
+HR_SITE,CITY_NM,VARCHAR,50,N,,,38,0,,,free text
+HR_PERSON,REGION_CD,CHAR,4,N,PK,Management region owning the record,3,0,AMER,EMEA,APAC (40%); EMEA (34%); AMER (26%)
+HR_PERSON,PERSON_NO,VARCHAR,10,N,PK,Person number (unique within the region),9210,0,0000001,0211000,"pattern 9{7}; 9,650 rows but only 9,210 distinct values, so numbers are reused across regions"
+HR_PERSON,COMPANY_CD,VARCHAR,6,N,FK,,6,0,,,6 distinct companies
+HR_PERSON,GIVEN_NM,VARCHAR,50,N,,Given name,3100,0,,,free text
+HR_PERSON,FAMILY_NM,VARCHAR,50,N,,Family name,4200,0,,,free text
+HR_PERSON,BIRTH_DATE,VARCHAR,10,Y,,,5100,0.9,,,DD/MM/YYYY in 99.8% of non-null values; other formats 0.2%
+HR_PERSON,SEX_CD,CHAR,1,Y,,,3,0.5,1,9,1 (52%); 2 (46%); 9 (1.5%); null (0.5%)
+HR_PERSON,GOVT_ID_TYPE,VARCHAR,10,Y,,,3,11.4,,,NATID (68%); TAXID (12%); PASSPORT (8.6%); null (11.4%)
+HR_PERSON,GOVT_ID_NO,VARCHAR,25,Y,,Government identifier number,8360,11.4,,,contains spaces or dashes in 14%
+HR_PERSON,STATUS_CD,NUMBER,1,N,,,4,0,1,4,1 (79%); 3 (18.5%); 2 (2.3%); 4 (0.2%)
+HR_PERSON,JOIN_DATE,DATE,,N,,Date of joining,3900,0,2005-03-01,2026-10-28,valid dates
+HR_PERSON,LEAVE_DATE,DATE,,Y,,,2100,80.9,1900-01-01,2026-10-25,1900-01-01 (0.6%); null (80.9%)
+HR_PERSON,LEAVE_REASON_CD,VARCHAR,4,Y,,,6,81.0,,,RSGN (9%); XFER (3.4%); TERM (3%); RTRD (1.6%); EOCT (1.5%); DECS (0.5%)
+HR_PERSON,WORK_EMAIL,VARCHAR,100,Y,,Work email address,9100,6.2,,,contains @ in 100%
+HR_PERSON,XFER_FROM,VARCHAR,20,Y,,,290,96.9,,,pattern AAAA:9{7}; populated 3.1% while LEAVE_REASON_CD = XFER is 3.4%
+HR_PERSON,LAST_UPDATED,TIMESTAMP,,N,,,9400,0,2012-04-02 06:10:00,2026-10-30 21:02:44,valid timestamps
+HR_ASSIGN,REGION_CD,CHAR,4,N,"PK, FK",Management region owning the record,3,0,AMER,EMEA,APAC (40%); EMEA (34%); AMER (26%)
+HR_ASSIGN,PERSON_NO,VARCHAR,10,N,"PK, FK",Person number,9210,0,,,"every (REGION_CD, PERSON_NO) exists in HR_PERSON"
+HR_ASSIGN,SEQ_NO,NUMBER,3,N,PK,,9,0,1,9,1 (31%); 2 (24%); 3 (18%); 4 to 9 (27%)
+HR_ASSIGN,FROM_DATE,DATE,,N,,Start of the assignment,4900,0,2005-03-01,2026-10-28,valid dates
+HR_ASSIGN,THRU_DATE,DATE,,N,,,4700,0,2005-12-31,9999-12-31,9999-12-31 (30.9%)
+HR_ASSIGN,DEPT_CD,VARCHAR,6,N,FK,,71,0,,,FK to HR_DEPT with the same REGION_CD
+HR_ASSIGN,SITE_CD,VARCHAR,6,N,FK,,54,0,,,every value exists in HR_SITE
+HR_ASSIGN,COMPANY_CD,VARCHAR,6,N,FK,,6,0,,,6 distinct companies
+HR_ASSIGN,JOB_TITLE,VARCHAR,80,Y,,Job title,1480,1.1,,,free text
+HR_ASSIGN,LEVEL_CD,VARCHAR,3,Y,,,6,2.4,L01,L06,L01 (8%); L02 (22%); L03 (33%); L04 (22%); L05 (9%); L06 (3.6%); null (2.4%)
+HR_ASSIGN,MANAGER_NO,VARCHAR,10,Y,,,3100,21.5,,,person number inside the same region
+HR_ASSIGN,WORK_RATIO,NUMBER,"4,3",N,,,8,0,0.000,1.000,1.000 (92%); 0.800 (3.5%); 0.500 (3%); other (1.5%)
+HR_ASSIGN,CHANGE_CD,VARCHAR,4,Y,,,5,1.3,,,NEW (29%); MOVE (30%); PROM (22%); TERM (14%); XREG (3.7%); null (1.3%)

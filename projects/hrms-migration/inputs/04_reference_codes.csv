@@ -1,0 +1,87 @@
+code_set,source_value,source_meaning,target_value,meaning_status
+REF_GENDER_HRA01,M,Male,MALE,Documented
+REF_GENDER_HRA01,F,Female,FEMALE,Documented
+REF_GENDER_HRA01,X,Other or not stated,OTHER,Inferred - confirm with steward
+REF_GENDER_HRB02,1,Male,MALE,Inferred (profile + report usage)
+REF_GENDER_HRB02,2,Female,FEMALE,Inferred (profile + report usage)
+REF_GENDER_HRB02,9,Not known,UNKNOWN,Inferred - confirm with steward
+REF_NATID_TYPE_HRA01,NIN,National insurance or identity number,NATIONAL_ID,Inferred (profile + report usage)
+REF_NATID_TYPE_HRA01,SSN,Social security number,NATIONAL_ID,Inferred (profile + report usage)
+REF_NATID_TYPE_HRA01,PAN,Permanent account (tax) number,TAX_ID,Inferred (profile + report usage)
+REF_NATID_TYPE_HRA01,PPT,Passport number,PASSPORT,Inferred - confirm with steward
+REF_NATID_TYPE_HRB02,NATID,National identity number,NATIONAL_ID,Documented
+REF_NATID_TYPE_HRB02,TAXID,Tax identifier,TAX_ID,Documented
+REF_NATID_TYPE_HRB02,PASSPORT,Passport number,PASSPORT,Documented
+REF_TERM_REASON_HRA01,RES,Resigned,RESIGNED,Documented
+REF_TERM_REASON_HRA01,RET,Retired,RETIRED,Documented
+REF_TERM_REASON_HRA01,TRM,Terminated by employer,TERMINATED,Documented
+REF_TERM_REASON_HRA01,DTH,Deceased,DECEASED,Inferred (profile + report usage)
+REF_TERM_REASON_HRA01,EOC,End of contract,CONTRACT_END,Inferred (profile + report usage)
+REF_TERM_REASON_HRA01,DTR,Department transfer (record closed and a new one opened),INTERNAL_TRANSFER,Inferred - confirm with steward
+REF_TERM_REASON_HRB02,RSGN,Resigned,RESIGNED,Documented
+REF_TERM_REASON_HRB02,RTRD,Retired,RETIRED,Documented
+REF_TERM_REASON_HRB02,TERM,Terminated by employer,TERMINATED,Documented
+REF_TERM_REASON_HRB02,DECS,Deceased,DECEASED,Inferred (profile + report usage)
+REF_TERM_REASON_HRB02,EOCT,End of contract,CONTRACT_END,Inferred (profile + report usage)
+REF_TERM_REASON_HRB02,XFER,Transfer to another region (record closed and a new one opened),REGION_TRANSFER,Inferred - confirm with steward
+REF_STATUS_HRA01,A,Active,ACTIVE,Documented
+REF_STATUS_HRA01,L,On leave,ON_LEAVE,Inferred (profile + report usage)
+REF_STATUS_HRA01,S,Suspended,SUSPENDED,Inferred (profile + report usage)
+REF_STATUS_HRA01,T,Terminated,TERMINATED,Documented
+REF_STATUS_HRB02,1,Active,ACTIVE,Documented
+REF_STATUS_HRB02,2,On leave,ON_LEAVE,Inferred (profile + report usage)
+REF_STATUS_HRB02,3,Terminated,TERMINATED,Documented
+REF_STATUS_HRB02,4,Suspended,SUSPENDED,Inferred - confirm with steward
+REF_GRADE_HRA01,G1,Entry level,GR1,Inferred - confirm with steward
+REF_GRADE_HRA01,G2,Junior,GR2,Inferred - confirm with steward
+REF_GRADE_HRA01,G3,Mid level,GR3,Inferred - confirm with steward
+REF_GRADE_HRA01,G4,Senior,GR4,Inferred - confirm with steward
+REF_GRADE_HRA01,G5,Lead or manager,GR5,Inferred - confirm with steward
+REF_GRADE_HRA01,G6,Director and above,GR6,Inferred - confirm with steward
+REF_GRADE_HRB02,L01,Entry level,GR1,Inferred - confirm with steward
+REF_GRADE_HRB02,L02,Junior,GR2,Inferred - confirm with steward
+REF_GRADE_HRB02,L03,Mid level,GR3,Inferred - confirm with steward
+REF_GRADE_HRB02,L04,Senior,GR4,Inferred - confirm with steward
+REF_GRADE_HRB02,L05,Lead or manager,GR5,Inferred - confirm with steward
+REF_GRADE_HRB02,L06,Director and above,GR6,Inferred - confirm with steward
+REF_ASSIGN_REASON_HRA01,HIR,Hire,HIRE,Documented
+REF_ASSIGN_REASON_HRA01,PRM,Promotion,PROMOTION,Documented
+REF_ASSIGN_REASON_HRA01,XFR,Transfer,TRANSFER,Inferred (profile + report usage)
+REF_ASSIGN_REASON_HRA01,DPT,Department change,DEPT_CHANGE,Inferred (profile + report usage)
+REF_ASSIGN_REASON_HRA01,LOC,Location change,REGION_CHANGE,Inferred - confirm with steward
+REF_ASSIGN_REASON_HRA01,TRM,Termination,TERMINATION,Documented
+REF_ASSIGN_REASON_HRB02,NEW,New hire,HIRE,Documented
+REF_ASSIGN_REASON_HRB02,PROM,Promotion,PROMOTION,Documented
+REF_ASSIGN_REASON_HRB02,MOVE,Move within the region,TRANSFER,Inferred (profile + report usage)
+REF_ASSIGN_REASON_HRB02,XREG,Move to another region,REGION_CHANGE,Inferred (profile + report usage)
+REF_ASSIGN_REASON_HRB02,TERM,Termination,TERMINATION,Documented
+REF_COUNTRY_ISO2,IN,India,IN,Documented
+REF_COUNTRY_ISO2,SG,Singapore,SG,Documented
+REF_COUNTRY_ISO2,GB,United Kingdom,GB,Documented
+REF_COUNTRY_ISO2,US,United States,US,Documented
+REF_COUNTRY_ISO3,IND,India,IN,Documented
+REF_COUNTRY_ISO3,SGP,Singapore,SG,Documented
+REF_COUNTRY_ISO3,GBR,United Kingdom,GB,Documented
+REF_COUNTRY_ISO3,USA,United States,US,Documented
+REF_COUNTRY_ISO3,DEU,Germany,DE,Documented
+REF_CITY_ALIAS,Bangalore,Former name of Bengaluru,Bengaluru,Inferred - confirm with steward
+REF_CITY_ALIAS,Gurgaon,Former name of Gurugram,Gurugram,Inferred - confirm with steward
+REF_CITY_ALIAS,New York City,Same city as New York in HRB02,New York,Inferred - confirm with steward
+REF_REGION_TZ,APAC,Server time zone of the APAC partition,Asia/Singapore,Inferred - confirm with steward
+REF_REGION_TZ,EMEA,Server time zone of the EMEA partition,Europe/London,Inferred - confirm with steward
+REF_REGION_TZ,AMER,Server time zone of the AMER partition,America/New_York,Inferred - confirm with steward
+REF_RETENTION_YEARS,DEFAULT,Minimum years to keep a person's records after the last termination (project brief: more than 15),15,Inferred - confirm with steward
+REF_COUNTRY_ISO2,DE,Germany,DE,Documented
+REF_COUNTRY_ISO2,AE,United Arab Emirates,AE,Documented
+REF_COUNTRY_ISO2,AU,Australia,AU,Documented
+REF_COUNTRY_ISO2,HK,Hong Kong,HK,Documented
+REF_COUNTRY_ISO2,JP,Japan,JP,Documented
+REF_COUNTRY_ISO3,ARE,United Arab Emirates,AE,Documented
+REF_COUNTRY_ISO3,AUS,Australia,AU,Documented
+REF_COUNTRY_ISO3,HKG,Hong Kong,HK,Documented
+REF_COUNTRY_ISO3,JPN,Japan,JP,Documented
+REF_COUNTRY_ISO3,MYS,Malaysia,MY,Documented
+REF_COUNTRY_ISO3,FRA,France,FR,Documented
+REF_COUNTRY_ISO3,NLD,Netherlands,NL,Documented
+REF_COUNTRY_ISO3,CAN,Canada,CA,Documented
+REF_COUNTRY_ISO3,IDN,Indonesia,ID,Documented

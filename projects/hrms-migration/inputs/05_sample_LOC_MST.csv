@@ -1,0 +1,7 @@
+LOC_ID,LOC_NM,CTRY_CD,ST_NM,CTY_NM,ACT_FLG
+L0001,Mumbai Head Office,IN,Maharashtra,Mumbai,Y
+L0002,Bangalore Tech Park,IN,Karnataka,Bangalore,Y
+L0003,London Canary Wharf,GB,England,London,Y
+L0004,Singapore HQ,SG,,Singapore,Y
+L0005,New York Office,US,New York,New York City,Y
+L0006,Gurgaon Office,IN,Haryana,Gurgaon,N

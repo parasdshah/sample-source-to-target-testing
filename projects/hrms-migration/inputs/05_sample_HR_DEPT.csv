@@ -1,0 +1,7 @@
+REGION_CD,DEPT_CD,DEPT_NM,DIV_CD,DIV_NM,ACTIVE_FLAG
+APAC,D100,Retail Lending,RB,Retail Banking,1
+APAC,D200,Credit Risk,RK,Risk,1
+EMEA,D100,Collections,OP,Operations,1
+EMEA,D200,Credit Risk,RK,Risk,1
+AMER,D100,Cards,RB,Retail Banking,1
+AMER,D300,Treasury,FN,Finance,0

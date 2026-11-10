@@ -1,0 +1,7 @@
+SITE_CD,SITE_NM,REGION_CD,COUNTRY_ISO3,PROVINCE_NM,DISTRICT_NM,CITY_NM
+S001,Singapore Central,APAC,SGP,,Downtown Core,Singapore
+S002,Bengaluru Whitefield,APAC,IND,Karnataka,Bengaluru Urban,Bengaluru
+S003,London City,EMEA,GBR,England,Greater London,London
+S004,Frankfurt Main,EMEA,DEU,Hesse,Frankfurt am Main,Frankfurt
+S005,New York Midtown,AMER,USA,New York,New York County,New York
+S006,Austin Downtown,AMER,USA,Texas,Travis County,Austin

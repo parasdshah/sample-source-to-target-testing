@@ -1,0 +1,7 @@
+MSG_ID,RCPT_SEQ,RCPT_ADR,RCPT_TYP,DLV_STS,RD_FLG,RD_TS,DEL_FLG
+000000000101,1,priya.n@example.com,T,DL,Y,2026-10-30 09:20:11,N
+000000000101,2,Team.Lending@Example.com,C,DL,N,,N
+000000000102,1,asha.rao@example.com,T,DL,Y,2026-10-30 10:30:02,N
+000000000103,1,asha.rao@example.com,T,BN,,,Y
+000000000104,1,accounts@gulftrading.example,T,SN,,,N
+000000000104,2,audit@example.com,B,DF,N,,N

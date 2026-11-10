@@ -1,4 +1,6 @@
-# CRM01 Naming Conventions (as supplied by the source team)
+# CRM01 Naming Conventions
+
+## Part A: Source system conventions (as supplied by the source team)
 
 1. Tables: `<ENTITY>_<CLASS>`; class `MST` = master, `DTL` = detail/transaction, `REF` = reference, `HST` = history.
 2. Columns: UPPER_CASE words separated by `_`; abbreviations are 2-4 letters.
@@ -7,3 +9,6 @@
 5. `USR_FLD_n` columns are free-use fields for branch staff and have no defined meaning.
 6. Source dates of `00000000` or `99999999` are legacy "not available / open-ended" markers (not confirmed per column).
 7. Source system code for all records: `CRM01`.
+
+## Part B: Target model conventions
+Not supplied. The target DDL (`03_target_model.sql`) is self-describing, so conventions are inferred from it: `_SK` surrogate key, `_CD` code, `_FLG` CHAR(1) Y/N, `_DT` DATE, `_TS` TIMESTAMP, `_CNT` count, audit columns `SRC_SYSTEM_CD`, `BATCH_ID`, `LOAD_TS`. Replace this part with the target team's rules if the target names are cryptic.

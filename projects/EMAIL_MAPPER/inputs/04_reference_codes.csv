@@ -1,0 +1,19 @@
+code_set,source_value,source_meaning,target_value,meaning_status
+REF_DIRECTION,I,Inbound (external to internal),INBOUND,Inferred (profile + report usage)
+REF_DIRECTION,O,Outbound (internal to external),OUTBOUND,Inferred (profile + report usage)
+REF_DIRECTION,X,Internal (both parties internal),INTERNAL,Inferred - confirm with steward
+REF_PRIORITY,1,High,HIGH,Documented
+REF_PRIORITY,3,Normal,NORMAL,Documented
+REF_PRIORITY,5,Low,LOW,Documented
+REF_PRIORITY,(null),Not set,UNKNOWN,Inferred - confirm with steward
+REF_RECIPIENT_TYPE,T,To,TO,Documented
+REF_RECIPIENT_TYPE,C,Carbon copy,CC,Documented
+REF_RECIPIENT_TYPE,B,Blind carbon copy,BCC,Documented
+REF_DELIVERY_STATUS,SN,Sent,SENT,Inferred (profile + report usage)
+REF_DELIVERY_STATUS,DL,Delivered,DELIVERED,Inferred (profile + report usage)
+REF_DELIVERY_STATUS,DF,Deferred,DEFERRED,Inferred (profile + report usage)
+REF_DELIVERY_STATUS,BN,Bounced,BOUNCED,Inferred (profile + report usage)
+REF_MAILBOX_TYPE,P,Personal,PERSONAL,Inferred (profile + report usage)
+REF_MAILBOX_TYPE,S,Shared,SHARED,Inferred (profile + report usage)
+REF_MAILBOX_TYPE,D,Distribution list,DISTLIST,Inferred - confirm with steward
+REF_MAILBOX_TYPE,G,Group,GROUP,Inferred - confirm with steward

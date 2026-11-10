@@ -1,0 +1,4 @@
+MBX_ID,MBX_ADR,MBX_TYP_CD,DEPT_CD,ACT_FLG
+MB000012,asha.rao@example.com,P,DP1042,Y
+MB000047,support@example.com,S,DP2001,Y
+MB000103,team.lending@example.com,D,,N

@@ -14,6 +14,6 @@ Copy `templates/project/` to `projects/<NEW_NAME>/`, drop the source files into 
 `source-to-target-mapping` skill and point it at that project folder (e.g. "map projects/ACME_LOANS").
 
 ## Running several together
-Tell Claude which projects to process (e.g. "map every project under projects/ that has no outputs yet").
+Tell your LLM or agent which projects to process (e.g. "map every project under projects/ that has no outputs yet").
 Each project reads only its own `inputs/` and writes only its own `outputs/`, so they can run in parallel
-(one subagent per project) without clashing.
+(one worker or session per project, if your tool supports it) without clashing.

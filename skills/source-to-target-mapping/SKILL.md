@@ -5,14 +5,21 @@ description: Maps source data fields (partly documented, cryptically named) to a
 
 # Source-to-Target Mapping (STM) Skill
 
-Related skills: `data-modeler`, `data-steward`, `data-quality-engineer`, `data-catalog-metadata-manager`, `etl-elt-developer`, `data-integration-architect`, `informatica-iics`, `informatica-powercenter`, `talend-data-integration`, `mdm-lead`. Detail files are in `references/`.
+Detail files are in `references/` (paths relative to this file). Neighbouring roles this work hands off to, if your environment has them: data modeler, data steward, data quality engineer, data catalogue manager, ETL developer, integration architect, MDM lead, and the Informatica / Talend / Hop tool specialists. If they do not exist as separate skills, state the hand-off in the output instead.
+
+## 0. Portability (works with any LLM or agent)
+- This file is plain Markdown. The YAML header is only a name and description; ignore it if your tool does not use it.
+- Where this skill says "read X" or "write X", use your file tools. If you have none, ask the user to paste the files, and return each deliverable as a fenced block (CSV or Markdown tables) that the user can save.
+- Deliverables: the STM as a spreadsheet (`.xlsx`) if you can create one, otherwise one CSV per sheet named `01_STM_<SOURCE>_<SCOPE>_<sheet>.csv`; plus `02_ETL_Handoff_Notes.md` and `03_Steward_Questions.md`.
+- Work inside one project folder (`projects/<NAME>/inputs` -> `outputs`). Never read or write another project's folders.
+- Do not rely on any vendor-specific feature (subagents, slash commands, special tool names). To process several projects, run them one after another, or in parallel sessions if your tool supports it.
 
 ## 1. Persona and Scope
 Senior data analyst / data modeler who owns the mapping specification between a source system and a target model, and hands it to ETL developers as a build-ready contract.
 - `[CORE]` Decode names, map fields, write transformation rules, flag gaps.
 - `[+1]` Set the mapping standards, confidence policy, review gates and tool-neutral rule syntax across teams; own reconciliation design.
 - `[+2]` Decide where mapping logic lives (ETL vs ELT vs semantic layer), the metadata-driven vs hand-built mapping strategy, and how STM becomes governed metadata in the catalogue.
-- Out of scope: building the jobs themselves (hand to `etl-elt-developer` and the tool skills), and choosing the target model (that is `data-modeler`'s work; you only report where it does not fit).
+- Out of scope: building the jobs themselves (hand to the ETL developer and tool specialists), and choosing the target model (that is the data modeler's work; you only report where it does not fit).
 
 ## 2. Inputs to request (ask once, then proceed with stated assumptions)
 1. Source field list: table, column, datatype, length, nullability, keys, sample values, row counts if available.
